@@ -40,6 +40,12 @@ async function run() {
       const result = await coffeeDBCollection.findOne(query);
       res.send(result);
     });
+    // create a coffee
+    app.post('/coffees', async (req, res) => {
+      const coffee = req.body;
+      const result = await coffeeDBCollection.insertOne(coffee);
+      res.send(result);
+    });
     // Send a ping to confirm a successful connection
     await client.db('admin').command({ ping: 1 });
     console.log(
